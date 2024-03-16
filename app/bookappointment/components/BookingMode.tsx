@@ -4,10 +4,11 @@ export default function BookingMode() {
 
     return (
         <div className='grid grid-rows-2 grid-flow-col gap-20'>
-            <CardComponent name='Bus' onClick={()=> alert("first")}/>
-            <CardComponent name='Train' onClick={()=> alert("first")}/>
-            <CardComponent name='E-bill board' onClick={()=> alert("first")}/>
-            <CardComponent name='E-cutout' onClick={()=> alert("first")}/>
+            <CardComponent name='E-Bus' onClick={()=> alert("first")}/>
+            <CardComponent name='E-Train' onClick={()=> alert("first")}/>
+            <CardComponent name='E-Bill board' onClick={()=> alert("first")}/>
+            <CardComponent name='E-Cutout Walls' onClick={()=> alert("first")}/>
+            <CardComponent name='E-Posters' onClick={()=> alert("first")}/>
       </div>
   )
 }
