@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true,
-     output:'export',
-    images: {
-        domains: ['img.etimg.com'],
-      },
-  };
-  
+  output:'export',
+};
+/* module.exports = nextConfig*/
 export default nextConfig;
