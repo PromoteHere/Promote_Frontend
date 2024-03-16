@@ -6,30 +6,22 @@ const Homepage = () => {
   useEffect(() => {
     const acc = document.getElementsByClassName("accordion");
     const scrollFunction = () => {
-      if(document){
+      let navBar = document && document.getElementById("navbar")!
+      let scrollUp = document && document.getElementById("scroll-up")!
       if (
         document.body.scrollTop > 100 ||
         document.documentElement.scrollTop > 100
       ) {
-        document.getElementById("navbar").style.top = "0";
-        document.getElementById("scroll-up").style.display = "block";
+        navBar.style.top = "0";
+        scrollUp.style.display = "block";
       } else {
-        document.getElementById("navbar").style.top = "-60px";
-        document.getElementById("scroll-up").style.display = "none";
-      }}
-    };
-
-    const myFunction = () => {
-      const x = document && document.getElementById("myTopnav");
-      if (x.className === "topnav") {
-        x.className += " responsive";
-      } else {
-        x.className = "topnav";
+        navBar.style.top = "-60px";
+        scrollUp.style.display = "none";
       }
     };
 
     const loop = () => {
-      const elementsToShow =document && document.querySelectorAll(".show-on-scroll");
+      const elementsToShow = document && document.querySelectorAll(".show-on-scroll");
       const isElementInViewport = (el: {
         getBoundingClientRect: () => any;
       }) => {
@@ -39,10 +31,10 @@ const Homepage = () => {
           (rect.bottom >=
             (window.innerHeight || document.documentElement.clientHeight) &&
             rect.top <=
-              (window.innerHeight || document.documentElement.clientHeight)) ||
+            (window.innerHeight || document.documentElement.clientHeight)) ||
           (rect.top >= 0 &&
             rect.bottom <=
-              (window.innerHeight || document.documentElement.clientHeight))
+            (window.innerHeight || document.documentElement.clientHeight))
         );
       };
 
@@ -58,14 +50,16 @@ const Homepage = () => {
     };
 
     const myLoader = () => {
+      let loader = document && document.getElementById("loader")
+      let myDiv = document && document.getElementById("myDiv")
       setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("myDiv").style.display = "block";
+        if (loader) loader.style.display = "none";
+        if (myDiv) myDiv.style.display = "block";
       }, 3000);
     };
 
     for (let i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function () {
+      acc[i].addEventListener("click", function (this: any) {
         this.classList.toggle("active");
         const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
@@ -84,7 +78,14 @@ const Homepage = () => {
       window.removeEventListener("scroll", scrollFunction);
     };
   }, []);
-
+  const myFunction = () => {
+    const x = document && document.getElementById("myTopnav")!;
+    if (x?.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  };
   return (
     <div>
       <>
@@ -97,7 +98,6 @@ const Homepage = () => {
         />
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="author" content="Mahesh" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta property="og:locale" content="en_US" />
@@ -153,7 +153,7 @@ const Homepage = () => {
               href="javascript:void(0);"
               style={{ fontSize: 15 }}
               className="icon"
-              onClick="myFunction()"
+              onClick={myFunction}
             >
               ☰
             </a>
