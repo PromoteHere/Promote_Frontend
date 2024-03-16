@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "static": "next build && next export && touch ./out/.nojekyll && echo 'https://vyanlynx.github.io/Promote_Frontend' > ./out/CNAME"
+    "lint": "next lint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
