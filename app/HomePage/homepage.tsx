@@ -89,24 +89,6 @@ const Homepage = () => {
   return (
     <div>
       <>
-        {/*ICON*/}
-        <link rel="shortcut icon" href="images/logo.svg" />
-        {/*META TAGS*/}
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, user-scalable=no"
-        />
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:url" content="" />
-        <meta property="og:site_name" content="Promote" />
-        {/*EXTERNAL CSS*/}
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/custom.css" />
-        {/*PLUGIN*/}
         {/*FONT AWESOME*/}
         <link
           rel="stylesheet"
