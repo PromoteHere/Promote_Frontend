@@ -6,6 +6,7 @@ const Homepage = () => {
   useEffect(() => {
     const acc = document.getElementsByClassName("accordion");
     const scrollFunction = () => {
+      if(document){
       if (
         document.body.scrollTop > 100 ||
         document.documentElement.scrollTop > 100
@@ -15,11 +16,11 @@ const Homepage = () => {
       } else {
         document.getElementById("navbar").style.top = "-60px";
         document.getElementById("scroll-up").style.display = "none";
-      }
+      }}
     };
 
     const myFunction = () => {
-      const x = document.getElementById("myTopnav");
+      const x = document && document.getElementById("myTopnav");
       if (x.className === "topnav") {
         x.className += " responsive";
       } else {
@@ -28,7 +29,7 @@ const Homepage = () => {
     };
 
     const loop = () => {
-      const elementsToShow = document.querySelectorAll(".show-on-scroll");
+      const elementsToShow =document && document.querySelectorAll(".show-on-scroll");
       const isElementInViewport = (el: {
         getBoundingClientRect: () => any;
       }) => {
@@ -53,7 +54,7 @@ const Homepage = () => {
         }
       });
 
-      window.requestAnimationFrame(loop);
+      window && window.requestAnimationFrame(loop);
     };
 
     const myLoader = () => {
