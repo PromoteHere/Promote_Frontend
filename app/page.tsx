@@ -1,12 +1,11 @@
 import HomePage from "./HomePage/homepage";
-import Signin from "./SignPage/signin";
 
 export default function Home() {
   return (
     <main>
       <div>
-        {/* <HomePage /> */}
-        <Signin />
+        <HomePage />
+        {/* <Signin /> */}
       </div>
     </main>
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
