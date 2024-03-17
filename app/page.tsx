@@ -1,5 +1,5 @@
 import HomePage from "./HomePage/homepage";
-import Signin from "./SignPage/signin";
+import Signin from "./SignPage/LoginForm";
 
 export default function Home() {
   return (
