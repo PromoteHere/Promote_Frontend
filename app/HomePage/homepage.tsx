@@ -6,22 +6,29 @@ const Homepage = () => {
   useEffect(() => {
     const acc = document.getElementsByClassName("accordion");
     const scrollFunction = () => {
-      let navBar = document && document.getElementById("navbar")!
-      let scrollUp = document && document.getElementById("scroll-up")!
       if (
         document.body.scrollTop > 100 ||
         document.documentElement.scrollTop > 100
       ) {
-        navBar.style.top = "0";
-        scrollUp.style.display = "block";
+        document.getElementById("navbar").style.top = "0";
+        document.getElementById("scroll-up").style.display = "block";
       } else {
-        navBar.style.top = "-60px";
-        scrollUp.style.display = "none";
+        document.getElementById("navbar").style.top = "-60px";
+        document.getElementById("scroll-up").style.display = "none";
+      }
+    };
+
+    const myFunction = () => {
+      const x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
       }
     };
 
     const loop = () => {
-      const elementsToShow = document && document.querySelectorAll(".show-on-scroll");
+      const elementsToShow = document.querySelectorAll(".show-on-scroll");
       const isElementInViewport = (el: {
         getBoundingClientRect: () => any;
       }) => {
@@ -31,10 +38,10 @@ const Homepage = () => {
           (rect.bottom >=
             (window.innerHeight || document.documentElement.clientHeight) &&
             rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight)) ||
+              (window.innerHeight || document.documentElement.clientHeight)) ||
           (rect.top >= 0 &&
             rect.bottom <=
-            (window.innerHeight || document.documentElement.clientHeight))
+              (window.innerHeight || document.documentElement.clientHeight))
         );
       };
 
@@ -46,20 +53,18 @@ const Homepage = () => {
         }
       });
 
-      window && window.requestAnimationFrame(loop);
+      window.requestAnimationFrame(loop);
     };
 
     const myLoader = () => {
-      let loader = document && document.getElementById("loader")
-      let myDiv = document && document.getElementById("myDiv")
       setTimeout(() => {
-        if (loader) loader.style.display = "none";
-        if (myDiv) myDiv.style.display = "block";
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
       }, 3000);
     };
 
     for (let i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function (this: any) {
+      acc[i].addEventListener("click", function () {
         this.classList.toggle("active");
         const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
@@ -78,17 +83,29 @@ const Homepage = () => {
       window.removeEventListener("scroll", scrollFunction);
     };
   }, []);
-  const myFunction = () => {
-    const x = document && document.getElementById("myTopnav")!;
-    if (x?.className === "topnav") {
-      x.className += " responsive";
-    } else {
-      x.className = "topnav";
-    }
-  };
+
   return (
     <div>
       <>
+        {/*ICON*/}
+        <link rel="shortcut icon" href="images/logo.svg" />
+        {/*META TAGS*/}
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, user-scalable=no"
+        />
+        <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="author" content="Mahesh" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:url" content="" />
+        <meta property="og:site_name" content="Promote" />
+        {/*EXTERNAL CSS*/}
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/custom.css" />
+        {/*PLUGIN*/}
         {/*FONT AWESOME*/}
         <link
           rel="stylesheet"
@@ -135,7 +152,7 @@ const Homepage = () => {
               href="javascript:void(0);"
               style={{ fontSize: 15 }}
               className="icon"
-              onClick={myFunction}
+              onClick="myFunction()"
             >
               ☰
             </a>
