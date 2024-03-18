@@ -1,13 +1,40 @@
 "use client";
 import React, { useState } from 'react';
 import './LoginForm.css';
+import { ADDRESS_REGEX, EMAIL_REGEX, PASSWORD_REGEX, PHONENUMBER_REGEX, USERNAME_REGEX } from '@/Services/Regex';
 
 const SignInSignUpForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const toggleSignUpMode = () => {
     setIsSignUp(!isSignUp);
   };
+
+  const onUserName = () => {
+    USERNAME_REGEX.test(username);
+  }
+
+  const onEmail = () => {
+    EMAIL_REGEX.test(email);
+  }
+
+  const onPhoneNumber = () => {
+    PHONENUMBER_REGEX.test(phone);
+  }
+
+  const onAddress = () => {
+    ADDRESS_REGEX.test(address);
+  }
+
+  const onPassword = () => {
+    PASSWORD_REGEX.test(password);
+  }
 
   return (
     <div className={`container ${isSignUp ? 'sign-up-mode' : ''}`}>
@@ -44,15 +71,27 @@ const SignInSignUpForm = () => {
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
             </div>
             <div className="input-field">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div className="input-field">
+              <i className="fas fa-envelope"></i>
+              <input type="number" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+            </div>
+            <div className="input-field">
+              <i className="fas fa-user"></i>
+              <input type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)}/>
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+            </div>
+            <div className="input-field">
+              <i className="fas fa-lock"></i>
+              <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
             </div>
             <input type="submit" className="btn" value="Sign up" />
             <p className="social-text">Or Sign up with social platforms</p>
