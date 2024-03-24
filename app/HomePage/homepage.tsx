@@ -3,29 +3,32 @@ import React, { useEffect } from "react";
 import "./homepage.css";
 
 const Homepage = () => {
+  const myFunction = () => {
+    const x = document.getElementById("myTopnav");
+    if (x && x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      if(x) x.className = "topnav";
+    }
+  };
   useEffect(() => {
     const acc = document.getElementsByClassName("accordion");
     const scrollFunction = () => {
+      let navbar = document.getElementById("navbar")
+      let scrollUp = document.getElementById("scroll-up")
       if (
         document.body.scrollTop > 100 ||
         document.documentElement.scrollTop > 100
       ) {
-        document.getElementById("navbar").style.top = "0";
-        document.getElementById("scroll-up").style.display = "block";
+        if(navbar) navbar.style.top = "0";
+        if(scrollUp) scrollUp.style.display = "block";
       } else {
-        document.getElementById("navbar").style.top = "-60px";
-        document.getElementById("scroll-up").style.display = "none";
+        if(navbar) navbar.style.top = "-60px";
+        if(scrollUp) scrollUp.style.display = "none";
       }
     };
 
-    const myFunction = () => {
-      const x = document.getElementById("myTopnav");
-      if (x.className === "topnav") {
-        x.className += " responsive";
-      } else {
-        x.className = "topnav";
-      }
-    };
+
 
     const loop = () => {
       const elementsToShow = document.querySelectorAll(".show-on-scroll");
@@ -57,14 +60,16 @@ const Homepage = () => {
     };
 
     const myLoader = () => {
+      let loader=document?.getElementById("loader")
+      let myDiv=document?.getElementById("myDiv")
       setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("myDiv").style.display = "block";
+        if(loader) loader.style.display = "none";
+        if(myDiv) myDiv.style.display = "block";
       }, 3000);
     };
 
     for (let i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function () {
+      acc[i].addEventListener("click", function (this:any) {
         this.classList.toggle("active");
         const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
@@ -152,7 +157,7 @@ const Homepage = () => {
               href="javascript:void(0);"
               style={{ fontSize: 15 }}
               className="icon"
-              onClick="myFunction()"
+              onClick={myFunction}
             >
               ☰
             </a>
