@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './LoginForm.css';
-import { ADDRESS_REGEX, EMAIL_REGEX, PASSWORD_REGEX, PHONENUMBER_REGEX, USERNAME_REGEX } from '@/Services/Regex';
+import { ADDRESS_REGEX, EMAIL_REGEX, PASSWORD_REGEX, PHONENUMBER_REGEX, USERNAME_REGEX, VALIDATION_MESSAGE } from '@/Services/Regex';
 
 const SignInSignUpForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -11,30 +11,98 @@ const SignInSignUpForm = () => {
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [onErrorUserName, setOnErrorUserName] = useState(false);
+  const [onErrorEmail, setOnErrorEmail] = useState(false);
+  const [onErrorPhone, setOnErrorPhone] = useState(false);
+  const [onErrorAddress, setOnErrorAddress] = useState(false);
+  const [onErrorPassword, setOnErrorPassword] = useState(false);
+  const [onErrorConfirmPassword, setOnErrorConfirmPassword] = useState(false);
+  const [disabledButton, setDisabledButton] = useState(false);
 
   const toggleSignUpMode = () => {
     setIsSignUp(!isSignUp);
   };
 
-  const onUserName = () => {
-    USERNAME_REGEX.test(username);
+  const onUserName = (e: any) => {
+    setUsername(e.target.value)
+    if (USERNAME_REGEX.test(username)){
+      setOnErrorUserName(false);
+    }
+    else{
+      setOnErrorUserName(true);
+    }
   }
 
-  const onEmail = () => {
-    EMAIL_REGEX.test(email);
+  const onEmail = (e: any) => {
+    setEmail(e.target.value)
+    if(EMAIL_REGEX.test(email)){
+      setOnErrorEmail(false);
+    }
+    else{
+      setOnErrorEmail(true);
+    }
   }
 
-  const onPhoneNumber = () => {
-    PHONENUMBER_REGEX.test(phone);
+  const onPhoneNumber = (e: any) => {
+    setPhone(e.target.value)
+    if(PHONENUMBER_REGEX.test(phone)){
+      setOnErrorPhone(false);
+    }
+    else{
+      setOnErrorPhone(true);
+    }
   }
 
-  const onAddress = () => {
-    ADDRESS_REGEX.test(address);
+  const onAddress = (e: any) => {
+    setAddress(e.target.value)
+    if(ADDRESS_REGEX.test(address)){
+      setOnErrorAddress(false);
+    }
+    else{
+      setOnErrorAddress(true);
+    }
   }
 
-  const onPassword = () => {
-    PASSWORD_REGEX.test(password);
+  const onPassword = (e: any) => {
+    setPassword(e.target.value)
+    if(PASSWORD_REGEX.test(password)){
+      setOnErrorPassword(false);
+    }
+    else{
+      setOnErrorPassword(true);
+    }
   }
+
+  const onConfirmPassword = (e: any) => {
+    setConfirmPassword(e.target.value);
+  }
+
+  useEffect(() => {
+    if(confirmPassword.length > 0){
+      if(confirmPassword === password){
+        setOnErrorConfirmPassword(false);
+      }
+      else{
+        setOnErrorConfirmPassword(true);
+      }
+    }
+    if((username === '') && (email === '') && (phone === '') && (address === '') && (password === '') && (confirmPassword === '')){
+      setDisabledButton(true);
+    }
+    else{
+      setDisabledButton(false);
+    }
+  },[])
+
+  // useEffect(() => {
+  //   if((username == '') && (email == '') && (phone == '') && (address == '') && (password == '') && (confirmPassword == '')){
+  //     setDisabledButton(true);
+  //   }
+  //   else{
+  //     setDisabledButton(false);
+  //   }
+  // },[(username && email && phone && address && password && confirmPassword)])
+
 
   return (
     <div className={`container ${isSignUp ? 'sign-up-mode' : ''}`}>
@@ -71,28 +139,34 @@ const SignInSignUpForm = () => {
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+              <input type="text" placeholder="Username" value={username} onChange={(e) => onUserName(e)}/>
             </div>
+            {onErrorUserName &&<span style={{display: "flex", color: "red"}}><h4> {VALIDATION_MESSAGE.username} </h4></span> }
             <div className="input-field">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="email" placeholder="Email" value={email} onChange={(e) => onEmail(e)} />
             </div>
+            {onErrorEmail &&<span style={{display: "flex", color: "red"}}><h4> {VALIDATION_MESSAGE.email} </h4></span> }
             <div className="input-field">
               <i className="fas fa-envelope"></i>
-              <input type="number" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+              <input type="number" placeholder="Phone Number" value={phone} onChange={(e) => onPhoneNumber(e)} />
             </div>
+            {onErrorPhone &&<span style={{display: "flex", color: "red"}}><h4> {VALIDATION_MESSAGE.phone} </h4></span> }
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)}/>
+              <input type="text" placeholder="Address" value={address} onChange={(e) => onAddress(e)}/>
             </div>
+            {onErrorAddress &&<span style={{display: "flex", color: "red"}}><h4> {VALIDATION_MESSAGE.address} </h4></span> }
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <input type="password" placeholder="Password" value={password} onChange={(e) => onPassword(e)}/>
             </div>
+            {onErrorPassword &&<span style={{display: "flex", color: "red"}}><h4> {VALIDATION_MESSAGE.password} </h4></span> }
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
+              <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => onConfirmPassword(e)}/>
             </div>
+            {onErrorConfirmPassword && <span style={{display: "flex", color: "red"}}><h4> {VALIDATION_MESSAGE.confirmPassword} </h4></span> }
             <input type="submit" className="btn" value="Sign up" />
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
