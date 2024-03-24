@@ -1,7 +1,6 @@
 "use client"
 import { Provider } from "react-redux";
-import HomePage from "./HomePage/homepage";
-import Signin from "./SignPage/LoginForm";
+import HomePage from "./home/homepage";
 import store from "@/Services/store";
 
 export default function Home() {
@@ -9,8 +8,7 @@ export default function Home() {
     <Provider store={store}>
       <main>
         <div>
-          {/* <HomePage /> */}
-          <Signin />
+          <HomePage />
         </div>
       </main>
     </Provider>
