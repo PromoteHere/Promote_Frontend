@@ -17,6 +17,7 @@ const SignInSignUpForm = () => {
   const [onErrorAddress, setOnErrorAddress] = useState(false);
   const [onErrorPassword, setOnErrorPassword] = useState(false);
   const [onErrorConfirmPassword, setOnErrorConfirmPassword] = useState(false);
+ // const [isUserSignedUp, setIsUserSignedUp] = useState(false);
   const [disabledButton, setDisabledButton] = useState(false);
 
   const toggleSignUpMode = () => {
@@ -93,6 +94,11 @@ const SignInSignUpForm = () => {
       setDisabledButton(false);
     }
   },[])
+
+  // const onSignUp = (e: any) => {
+  //   setIsUserSignedUp(!isUserSignedUp);
+  //   e.preventDefault();
+  // }
 
   // useEffect(() => {
   //   if((username == '') && (email == '') && (phone == '') && (address == '') && (password == '') && (confirmPassword == '')){
