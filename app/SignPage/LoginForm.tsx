@@ -87,12 +87,6 @@ const SignInSignUpForm = () => {
         setOnErrorConfirmPassword(true);
       }
     }
-    if((username === '') && (email === '') && (phone === '') && (address === '') && (password === '') && (confirmPassword === '')){
-      setDisabledButton(true);
-    }
-    else{
-      setDisabledButton(false);
-    }
   },[])
 
   // const onSignUp = (e: any) => {
