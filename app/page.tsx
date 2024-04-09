@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import HomePage from "./HomePage/homepage";
 import Signin from "./SignPage/LoginForm";
 import store from "@/Services/store";
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default function Home() {
   return (

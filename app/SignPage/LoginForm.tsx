@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './LoginForm.css';
 import { ADDRESS_REGEX, EMAIL_REGEX, PASSWORD_REGEX, PHONENUMBER_REGEX, USERNAME_REGEX, VALIDATION_MESSAGE } from '@/Services/Regex';
+import ModalComponent from '@/Components/shared/ModalComponent/ModalComponent';
 
 const SignInSignUpForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -17,6 +18,10 @@ const SignInSignUpForm = () => {
   const [onErrorAddress, setOnErrorAddress] = useState(false);
   const [onErrorPassword, setOnErrorPassword] = useState(false);
   const [onErrorConfirmPassword, setOnErrorConfirmPassword] = useState(false);
+  const [loggedInUsername, setLoggedInUsername] = useState('');
+  const [loggedInPassword, setLoggedInPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [showModal, setShowModal] = useState<boolean>(false);
  // const [isUserSignedUp, setIsUserSignedUp] = useState(false);
   const [disabledButton, setDisabledButton] = useState(false);
 
@@ -89,36 +94,56 @@ const SignInSignUpForm = () => {
     }
   },[])
 
-  // const onSignUp = (e: any) => {
-  //   setIsUserSignedUp(!isUserSignedUp);
-  //   e.preventDefault();
-  // }
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const username = loggedInUsername;
+    const password = loggedInPassword
+    let responseData: any;
+    try {
+      const response = await fetch('https://promote-signin.onrender.com/API/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      
+      if(response.ok){
+        responseData = await response.json();
+      }
+      else {
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
+      }
+      setShowModal(true);
+      setLoginError(((responseData.error)|| (responseData.message)))
+    } catch (error: any) {
+      setLoginError(error.message || 'An error occurred during login');
+    }
+  };
 
-  // useEffect(() => {
-  //   if((username == '') && (email == '') && (phone == '') && (address == '') && (password == '') && (confirmPassword == '')){
-  //     setDisabledButton(true);
-  //   }
-  //   else{
-  //     setDisabledButton(false);
-  //   }
-  // },[(username && email && phone && address && password && confirmPassword)])
-
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <div className={`container ${isSignUp ? 'sign-up-mode' : ''}`}>
       <div className="forms-container">
         <div className="signin-signup">
-          <form action="#" className="sign-in-form">
+          <ModalComponent show={showModal} handleClose={handleCloseModal} content={loginError}/>
+          <form className="sign-in-form" onSubmit={handleLogin}>
             <h2 className="title">Sign in</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Username" value={loggedInUsername}
+                onChange={(e) => setLoggedInUsername(e.target.value)}/>
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" value={loggedInPassword}
+                onChange={(e) => setLoggedInPassword(e.target.value)}/>
             </div>
-            <input type="submit" value="Login" className="btn solid" />
+            <input type="submit" value="Login" className="primary-btn solid" />
             <p className="social-text">Or Sign in with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
@@ -167,7 +192,7 @@ const SignInSignUpForm = () => {
               <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => onConfirmPassword(e)}/>
             </div>
             {onErrorConfirmPassword && <span style={{display: "flex", color: "red"}}><h4> {VALIDATION_MESSAGE.confirmPassword} </h4></span> }
-            <input type="submit" className="btn" value="Sign up" />
+            <input type="submit" className="primary-btn" value="Sign up" />
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
@@ -195,7 +220,7 @@ const SignInSignUpForm = () => {
               Discover a world of possibilities! Join us and explore a vibrant
               community where ideas flourish and connections thrive.
             </p>
-            <button className="btn transparent" onClick={toggleSignUpMode}>
+            <button className="primary-btn transparent" onClick={toggleSignUpMode}>
               Sign up
             </button>
           </div>
@@ -212,7 +237,7 @@ const SignInSignUpForm = () => {
               Thank you for being part of our community. Your presence enriches our
               shared experiences. Let's continue this journey together!
             </p>
-            <button className="btn transparent" onClick={toggleSignUpMode}>
+            <button className="primary-btn transparent" onClick={toggleSignUpMode}>
               Sign in
             </button>
           </div>
