@@ -2,23 +2,26 @@
 import React, { useState } from 'react';
 import { Button, message, Steps, theme } from 'antd';
 import BookingMode from './components/BookingMode';
+import BookingTable from './components/BookingTable';
+import UploadFile from './components/UploadFile';
+// import InputComponent from '@/Components/reuse/Input/InputComponent';
 const steps = [
     {
         title: 'BookingMode',
         content: <BookingMode />,
     },
     {
-        title: 'Second',
-        content: 'Second-content',
+        title: 'Select Booking',
+        content: <BookingTable/>,
+    },
+    {
+        title: 'Upload Video/Image',
+        content: <UploadFile/>,
     },
     {
         title: 'Last',
         content: 'Last-content',
-    },
-    {
-        title: 'Last',
-        content: 'Last-content',
-    },
+    }
 ];
 
 const Stepper: React.FC = () => {
@@ -44,7 +47,11 @@ const Stepper: React.FC = () => {
         border: `1px dashed ${token.colorBorder}`,
         marginTop: 16,
     };
-
+    const isNextButtonEnabled = () => {//todo: have to complete it
+        let isEnabled: any = sessionStorage.getItem('bookingType');
+        console.log(isEnabled)
+        return false;
+    }
     return (
         <>
             <div className='px-40'>
@@ -53,7 +60,7 @@ const Stepper: React.FC = () => {
             <div className='flex justify-center my-10'>{steps[current].content}</div>
             <div style={{ marginTop: 24 }} className='flex justify-center'>
                 {current < steps.length - 1 && (
-                    <Button className='bg-blue-500 ' onClick={() => next()}>
+                    <Button className='bg-blue-500 ' disabled={isNextButtonEnabled()} onClick={() => next()}>
                         Next
                     </Button>
                 )}
@@ -62,11 +69,11 @@ const Stepper: React.FC = () => {
                         Done
                     </Button>
                 )}
-                {current > 0 && (
+                {/* {current > 0 && (
                     <Button className='bg-red-300 ml-5' onClick={() => prev()}>
                         Previous
                     </Button>
-                )}
+                )} */}
             </div>
         </>
     );

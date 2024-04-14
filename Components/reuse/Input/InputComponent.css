@@ -1,0 +1,12 @@
+.inputContainer{
+    display: flex;
+    padding: 5px;
+    gap:10px;
+    align-items: center;
+}
+.inputCls{
+    border: 1px solid rgb(120, 203, 241);
+    width: 150px;
+    border-radius: 5px;
+    padding: 3px 10px;
+}
