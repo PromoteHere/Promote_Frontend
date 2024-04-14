@@ -22,13 +22,13 @@ export default function BookingTable() {
                 <thead>
                     <tr>
                         {busHeaders?.map((element: any) => {
-                            return <><th>{element}</th></>
+                            return <th key={element}>{element}</th>
                         })}
                     </tr>
                 </thead>
                 <tbody>
                     {busNames?.map((element: any) => {
-                        return <tr>
+                        return <tr key={element?.busName}>
                             <td><input type='checkbox' /></td>
                             <td>{element?.busNo}</td>
                             <td>{element?.busName}</td>

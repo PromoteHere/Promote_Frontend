@@ -9,7 +9,7 @@ export default function BookingMode() {
     const [selectedType, setSelectedType] = useState('');
     const setSelectedPlan = (value: string) => {
         setSelectedType(value)
-        sessionStorage.setItem('bookingType',value)
+        // if(sessionStorage) sessionStorage.setItem('bookingType',value)
     }
     return (
         <div className='grid grid-rows-2 grid-flow-col gap-20'>

@@ -48,8 +48,8 @@ const Stepper: React.FC = () => {
         marginTop: 16,
     };
     const isNextButtonEnabled = () => {//todo: have to complete it
-        let isEnabled: any = sessionStorage.getItem('bookingType');
-        console.log(isEnabled)
+        // let isEnabled: any =sessionStorage && sessionStorage.getItem('bookingType');
+        // console.log(isEnabled)
         return false;
     }
     return (
