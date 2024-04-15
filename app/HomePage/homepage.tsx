@@ -19,7 +19,7 @@ const Homepage = () => {
 
     window.addEventListener("scroll", scrollFunction);
     loop();
-    myLoader();
+    // myLoader();
 
     return () => {
       window.removeEventListener("scroll", scrollFunction);
@@ -27,7 +27,7 @@ const Homepage = () => {
   }, []);
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const toggleAccordion = (index) => {
+  const toggleAccordion = (index: number | null) => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
@@ -77,12 +77,7 @@ const Homepage = () => {
 
     window.requestAnimationFrame(loop);
   };
-  const myLoader = () => {
-    setTimeout(() => {
-      document.getElementById("loader").style.display = "none";
-      document.getElementById("myDiv").style.display = "block";
-    }, 3000);
-  };
+ 
 
   return (
     <div>
