@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './LoginForm.css';
 import { ADDRESS_REGEX, EMAIL_REGEX, PASSWORD_REGEX, PHONENUMBER_REGEX, USERNAME_REGEX, VALIDATION_MESSAGE } from '@/Services/Regex';
 import ModalComponent from '@/Components/shared/ModalComponent/ModalComponent';
+import EmailService from '../../Services/emailService';
 
 const SignInSignUpForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -22,6 +23,7 @@ const SignInSignUpForm = () => {
   const [loggedInPassword, setLoggedInPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [otpMessage, setOtpMessage] = useState<any>('');
  // const [isUserSignedUp, setIsUserSignedUp] = useState(false);
   const [disabledButton, setDisabledButton] = useState(false);
 
@@ -122,6 +124,16 @@ const SignInSignUpForm = () => {
     }
   };
 
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await EmailService.generateOTP(email);
+      setOtpMessage(response);
+    } catch (error) {
+      setOtpMessage('Failed to generate OTP');
+    }
+  }
+
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -160,7 +172,7 @@ const SignInSignUpForm = () => {
               </a>
             </div>
           </form>
-          <form action="#" className="sign-up-form">
+          <form className="sign-up-form" onSubmit={handleSignUp}>
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
