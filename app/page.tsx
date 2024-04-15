@@ -10,8 +10,8 @@ export default function Home() {
     <Provider store={store}>
       <main>
         <div>
-          {/* <HomePage /> */}
-          <Signin />
+          <HomePage />
+          {/* <Signin /> */}
         </div>
       </main>
     </Provider>
