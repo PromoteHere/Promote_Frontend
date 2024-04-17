@@ -126,8 +126,9 @@ const SignInSignUpForm = () => {
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const newuser = username;
     try {
-      const response = await EmailService.generateOTP(email);
+      const response = await EmailService.generateOTP(email, newuser);
       setOtpMessage(response);
     } catch (error) {
       setOtpMessage('Failed to generate OTP');

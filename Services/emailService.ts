@@ -1,12 +1,12 @@
 
-const generateOTP = async (email: string): Promise<void> => {
+const generateOTP = async (email: string, newuser: string): Promise<void> => {
   try {
     const response = await fetch('http://localhost:8080/email/generate-otp', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, newuser }),
     });
 
     if (!response.ok) {
