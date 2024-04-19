@@ -100,7 +100,7 @@ const SignInSignUpForm = () => {
     const password = loggedInPassword
     let responseData: any;
     try {
-      const response = await fetch('https://promote-signin.onrender.com/API/login', {
+      const response = await fetch('https://promotehere-signin.onrender.com/API/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
