@@ -153,6 +153,27 @@ form.sign-in-form {
 .primary-btn:hover {
   background-color: #4033ff;
 }
+
+.disableprimary-btn{
+  width: 150px;
+  background-color: #4033ff;
+  border: none;
+  outline: none;
+  height: 49px;
+  border-radius: 4px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  cursor: not-allowed;
+  transition: 0.5s;
+  opacity: 0.3;
+}
+
+.disableprimary-btn:hover {
+  background-color: #4033ff;
+}
+
 .panels-container {
   position: absolute;
   height: 100%;

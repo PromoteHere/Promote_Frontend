@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import './LoginForm.css';
 import { ADDRESS_REGEX, EMAIL_REGEX, PASSWORD_REGEX, PHONENUMBER_REGEX, USERNAME_REGEX, VALIDATION_MESSAGE } from '@/Services/Regex';
 import ModalComponent from '@/Components/shared/ModalComponent/ModalComponent';
-import EmailService from '../../Services/emailService';
+import EmailService from '../../Services/loginService';
+import OTPField from '@/Components/shared/OTPInputComponent/OTPInput';
 
 const SignInSignUpForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -24,7 +25,8 @@ const SignInSignUpForm = () => {
   const [loginError, setLoginError] = useState('');
   const [showModal, setShowModal] = useState<boolean>(false);
   const [otpMessage, setOtpMessage] = useState<any>('');
- // const [isUserSignedUp, setIsUserSignedUp] = useState(false);
+  const [submittedOTP, setSubmittedOtp] = useState<any>('');
+  const [isUserSignedUp, setIsUserSignedUp] = useState(false);
   const [disabledButton, setDisabledButton] = useState(false);
 
   const toggleSignUpMode = () => {
@@ -102,7 +104,7 @@ const SignInSignUpForm = () => {
     const password = loggedInPassword
     let responseData: any;
     try {
-      const response = await fetch('https://promote-signin.onrender.com/API/login', {
+      const response = await fetch('https://promotehere-signin.onrender.com/API/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -124,6 +126,26 @@ const SignInSignUpForm = () => {
     }
   };
 
+  const updateButtonDisabledState = () => {
+    if (
+      username.trim() === '' ||
+      email.trim() === '' ||
+      phone.trim() === '' ||
+      address.trim() === '' ||
+      password.trim() === '' ||
+      confirmPassword.trim() === ''
+    ) {
+      setDisabledButton(true);
+    } else {
+      setDisabledButton(false);
+    }
+  };
+
+  useEffect(() => {
+    updateButtonDisabledState();
+  }, [username, email, phone, address, password, confirmPassword]);
+
+
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newuser = username;
@@ -133,10 +155,34 @@ const SignInSignUpForm = () => {
     } catch (error) {
       setOtpMessage('Failed to generate OTP');
     }
+    setIsUserSignedUp(!isUserSignedUp);
   }
 
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const handleResendSendOTP = async () => {
+    const newuser = username;
+    try {
+      const response = await EmailService.generateOTP(email, newuser);
+      setOtpMessage(response);
+    } catch (error) {
+      setOtpMessage('Failed to generate OTP');
+    }
+    console.log("Sending OTP...");
+  };
+
+
+  const handleSubmitOTP = async (otp: any) => {
+    try {
+      const response = await EmailService.verifyOTP(email, otp);
+      setOtpMessage(response);
+    } catch (error) {
+      setOtpMessage('Failed to generate OTP');
+    }
+    console.log("Sending OTP...");
+    console.log("Submitting OTP:", otp);
   };
 
   return (
@@ -173,7 +219,7 @@ const SignInSignUpForm = () => {
               </a>
             </div>
           </form>
-          <form className="sign-up-form" onSubmit={handleSignUp}>
+          {!isUserSignedUp ? <form className="sign-up-form" onSubmit={handleSignUp}>
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
@@ -205,7 +251,7 @@ const SignInSignUpForm = () => {
               <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => onConfirmPassword(e)}/>
             </div>
             {onErrorConfirmPassword && <span style={{display: "flex", color: "red"}}><h4> {VALIDATION_MESSAGE.confirmPassword} </h4></span> }
-            <input type="submit" className="primary-btn" value="Sign up" />
+            <input type="submit" className={`${disabledButton ? "disableprimary-btn": "primary-btn"} `}value="Sign up" disabled={disabledButton}/>
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
@@ -222,6 +268,7 @@ const SignInSignUpForm = () => {
               </a>
             </div>
           </form>
+          : <OTPField onSendOTP={handleResendSendOTP} onSubmitOTP={handleSubmitOTP}/>}
         </div>
       </div>
 
