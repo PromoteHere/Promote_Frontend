@@ -1,6 +1,13 @@
 "use client";
 import React, { useEffect } from "react";
 import "./homepage.css";
+import PromoteImage from "@/Components/reuse/Image/Image";
+import Billboardimage from "../bookappointment/assets/E-Posters LED screen in each street advertisement for Promote in Chennai in top angle showing lot of led screens.png";
+import Trainimage from "../bookappointment/assets/E-Train LED screen advertisement for Promote web app in Chennai (1).png";
+import Cutoutimage from "../bookappointment/assets/E-cutouts LED screen advertisement for Promote web app in Chennai.png";
+import Postersimage from "../bookappointment/assets/E-Posters LED screen in each street advertisement for Promote web app in Chennai.png";
+import Busimage from "../bookappointment/assets/E-Bus LED screen advertisement for Promote web app in Chennai.png";
+import Slicker from "../bookappointment/components/SlickComponent/slick";
 
 const Homepage = () => {
   const myFunction = () => {
@@ -8,27 +15,26 @@ const Homepage = () => {
     if (x && x.className === "topnav") {
       x.className += " responsive";
     } else {
-      if(x) x.className = "topnav";
+      if (x) x.className = "topnav";
     }
   };
+
   useEffect(() => {
     const acc = document.getElementsByClassName("accordion");
     const scrollFunction = () => {
-      let navbar = document.getElementById("navbar")
-      let scrollUp = document.getElementById("scroll-up")
+      let navbar = document.getElementById("navbar");
+      let scrollUp = document.getElementById("scroll-up");
       if (
         document.body.scrollTop > 100 ||
         document.documentElement.scrollTop > 100
       ) {
-        if(navbar) navbar.style.top = "0";
-        if(scrollUp) scrollUp.style.display = "block";
+        if (navbar) navbar.style.top = "0";
+        if (scrollUp) scrollUp.style.display = "block";
       } else {
-        if(navbar) navbar.style.top = "-60px";
-        if(scrollUp) scrollUp.style.display = "none";
+        if (navbar) navbar.style.top = "-60px";
+        if (scrollUp) scrollUp.style.display = "none";
       }
     };
-
-
 
     const loop = () => {
       const elementsToShow = document.querySelectorAll(".show-on-scroll");
@@ -60,16 +66,16 @@ const Homepage = () => {
     };
 
     const myLoader = () => {
-      let loader=document?.getElementById("loader")
-      let myDiv=document?.getElementById("myDiv")
+      let loader = document?.getElementById("loader");
+      let myDiv = document?.getElementById("myDiv");
       setTimeout(() => {
-        if(loader) loader.style.display = "none";
-        if(myDiv) myDiv.style.display = "block";
+        if (loader) loader.style.display = "none";
+        if (myDiv) myDiv.style.display = "block";
       }, 3000);
     };
 
     for (let i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function (this:any) {
+      acc[i].addEventListener("click", function (this: any) {
         this.classList.toggle("active");
         const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
@@ -207,7 +213,7 @@ const Homepage = () => {
                       Experience the difference with Promote.
                     </p>
                     <br></br>
-                    <a href="#sections" className="btn1">
+                    <a href="/bookappointment" style={{textDecoration:'none'}} className="btn1">
                       Explore Our Features
                     </a>
                   </section>
@@ -224,57 +230,10 @@ const Homepage = () => {
           </table>
         </div>
         {/*CARDS*/}
-        <section className="section0" id="sections">
-          <div className="card banner">
-            <h1 className="title">Our Featured Services</h1>
-            <h5 className="sub-title">
-              Promote's featured services offer innovative solutions to elevate
-              your brand and connect with your audience in the digital age
-            </h5>
-          </div>
-          <div className="card inline-photo show-on-scroll">
-            <i className="fa fa-desktop" />
-            <h3>
-              <b>E-Billboard:</b> Command attention with dynamic digital
-              billboards that captivate audiences and drive brand visibility.
-            </h3>
-          </div>
-          <div className="card inline-photo show-on-scroll">
-            <i className="	fa fa-television" />
-            <h3>
-              {" "}
-              <b>E-Posters:</b> Modernize traditional poster advertising with
-              vibrant digital displays that deliver your message with impac
-            </h3>
-          </div>
-          <div className="card inline-photo show-on-scroll">
-            {/* <i className="fa fa-line-chart" /> */}
-            <i className="	fa fa-television" />
-            <h3>
-              {" "}
-              <b> E-Cutout Walls:</b> Transform physical spaces into immersive
-              brand experiences with interactive digital walls that leave a
-              lasting impression..
-            </h3>
-          </div>
-          <div className="card inline-photo show-on-scroll">
-            <i className="fa fa-train" />
-            <h3>
-              {" "}
-              <b> E-Train: </b>Reach commuters on the go with targeted digital
-              advertising on trains, ensuring maximum exposure and engagement.
-            </h3>
-          </div>
-          <div className="card inline-photo show-on-scroll">
-            <i className="fa fa-bus" />
-            <h3>
-              {" "}
-              <b> E-Bus: </b>Take your message to the streets with eye-catching
-              digital ads on buses, reaching a diverse audience wherever they
-              go.
-            </h3>
-          </div>
-        </section>
+        <div>
+          <Slicker/>
+        </div>
+
         {/*CONTAINER*/}
         <div className="container">
           <table>

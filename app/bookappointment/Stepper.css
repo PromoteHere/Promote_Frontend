@@ -1,0 +1,6 @@
+.stepper-container {
+    background-image: url('/path/to/your/image.jpg');
+    background-repeat: no-repeat; /* You can adjust background-repeat here */
+    background-position: center; /* You can adjust background-position here */
+    background-size: cover; /* You can adjust background-size here */
+  }

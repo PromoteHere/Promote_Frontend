@@ -1,0 +1,23 @@
+/* Customizing arrows */
+.slick-prev:before,
+.slick-next:before {
+  color: black; /* Set arrow color to black */
+  font-size: 24px; /* Adjust arrow size */
+}
+
+/* On hover, arrows remain black */
+.slick-prev:hover:before,
+.slick-next:hover:before {
+  color: black;
+}
+
+/* Customizing dots to be smaller and black */
+.slick-dots li button:before {
+  color: black; /* Set dot color to black */
+  font-size: 10px; /* Smaller dot size */
+}
+
+/* Active dot remains black */
+.slick-dots li.slick-active button:before {
+  color: black;
+}
