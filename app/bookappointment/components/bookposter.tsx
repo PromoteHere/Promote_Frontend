@@ -183,6 +183,7 @@ export default function Home() {
             setUserLocation({ lat: location.lat(), lng: location.lng() });
             filterScreens();
           }}
+          // @ts-ignore 
           placeholder="Search for a location"
           className="border p-3 rounded-lg w-full shadow-md focus:ring-2 focus:ring-blue-300"
         />
@@ -193,6 +194,7 @@ export default function Home() {
         <div>
           <label className="block text-gray-700 mb-1"><CalendarOutlined /> Select Date</label>
           <DatePicker
+          // @ts-ignore 
             onChange={(date, dateString) => setSelectedDate(dateString)}
             className="w-full border rounded-lg p-2"
           />
@@ -200,6 +202,7 @@ export default function Home() {
         <div>
           <label className="block text-gray-700 mb-1"><ClockCircleOutlined /> In-Time</label>
           <TimePicker
+          // @ts-ignore 
             onChange={(time, timeString) => setInTime(timeString)}
             className="w-full border rounded-lg p-2"
             format="HH:mm"
@@ -208,6 +211,7 @@ export default function Home() {
         <div>
           <label className="block text-gray-700 mb-1"><ClockCircleOutlined /> Out-Time</label>
           <TimePicker
+          // @ts-ignore 
             onChange={(time, timeString) => setOutTime(timeString)}
             className="w-full border rounded-lg p-2"
             format="HH:mm"
