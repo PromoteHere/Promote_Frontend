@@ -214,7 +214,7 @@ const Homepage = () => {
                     </p>
                     <br></br>
                     <a href="/bookappointment" style={{textDecoration:'none'}} className="btn1">
-                      Explore Our Features
+                      Book a Slot/Explore Our Features
                     </a>
                   </section>
                 </td>

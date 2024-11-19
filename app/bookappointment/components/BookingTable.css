@@ -1,0 +1,235 @@
+styles.css
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bus-container {
+    position: relative;
+    width: 400px;
+    perspective: 1000px;
+}
+
+.bus {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(135deg, #4caf50, #388e3c);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.bus:hover {
+    transform: translateY(-5px);
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.roof {
+    background: #388e3c;
+    height: 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.body {
+    background: white;
+    height: 120px;
+    border: 3px solid #4caf50;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.windows {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.window {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    width: 30%;
+    height: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.front-window {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.back-window {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.led-screen {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, #ffcc00, #ffc107);
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    z-index: 2;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.bus-info {
+    padding: 10px;
+    text-align: center;
+    font-size: small;
+}
+
+.bus-name {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #388e3c;
+    margin: -26px 0px 0px 0px;
+}
+
+.route{
+    font-size: 0.6rem;
+    margin: 3px 0;
+}
+.in-out-time {
+    font-size: 0.6rem;
+    margin: 3px 0;
+}
+.ad-duration{
+    font-size: 0.6rem;
+    margin: 3px 0;
+}
+
+.fare-amount {
+    font-weight: bold;
+    color: #ff5722;
+}
+
+.book-button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #388e3c;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.book-button:hover {
+    background: #4caf50;
+    transform: translateY(-2px);
+}
+
+.wheel {
+    background: #333;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    bottom: -10px;
+}
+
+.front-wheel {
+    left: 40px;
+}
+
+.back-wheel {
+    right: 40px;
+}
+.popup-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+  }
+  
+  .popup-content {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+  }
+  
+  .popup-content h3 {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .popup-content .close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .popup-content button {
+    transition: background-color 0.2s;
+  }
+  
+  .popup-content .space-y-3 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
