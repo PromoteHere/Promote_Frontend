@@ -202,7 +202,7 @@ const Homepage = () => {
                     <h5 className="sub-title">
                       Welcome To Promote Technologies
                     </h5>
-                    <h1 className="title">
+                    <h1 className="Homepagetitle">
                       Elevate Your Brand with Powerful Online Ads.
                     </h1>
 
@@ -235,7 +235,7 @@ const Homepage = () => {
         </div>
 
         {/*CONTAINER*/}
-        <div className="container">
+        <div className="homepagecontainer">
           <table>
             <tbody>
               <tr>

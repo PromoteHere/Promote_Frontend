@@ -5,17 +5,19 @@ import LoginForm from "./login/page";
 import Steppr from "./bookappointment/page"
 import store from "@/Services/store";
 import 'bootstrap/dist/css/bootstrap.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function Home() {
   return (
     <Provider store={store}>
-      <main>
-        <div>
-          {/* <Steppr/> */}
-          {/* <LoginForm/> */}
-          <HomePage />
-        </div>
-      </main>
+      <Router>
+        <main>
+          <Routes>
+            <Route path="/" element={<LoginForm />} />
+            <Route path="/home" element={<HomePage />} />
+          </Routes>
+        </main>
+      </Router>
     </Provider>
   );
 }
