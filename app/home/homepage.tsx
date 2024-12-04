@@ -483,8 +483,6 @@ const Homepage = () => {
         <a href="#" id="scroll-up">
           <i className="fa fa-angle-up" />
         </a>
-        {/*JAVASCRIPT*/}
-        <div className="credits">W3SCHOOLS, UNSPLASH, STACKOVERFLOW</div>
       </>
     </div>
   );
