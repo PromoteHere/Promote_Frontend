@@ -199,22 +199,42 @@ const Homepage = () => {
               <tr>
                 <td>
                   <section>
+                    <br></br>
+                    <br></br>
                     <h5 className="sub-title">
                       Welcome To Promote Technologies
                     </h5>
-                    <h1 className="title">
+                    <h1 className="Homepagetitle">
                       Elevate Your Brand with Powerful Online Ads.
                     </h1>
-
+                    <h5 className="sub-title">
+                      Hi Customers! 
+                    </h5>
                     <p>
                       At Promote, we specialize in effective digital marketing
                       solutions. From captivating social media campaigns to
                       targeted display ads, we help your brand shine online.
                       Experience the difference with Promote.
                     </p>
-                    <br></br>
+                    {/* <br></br> */}
                     <a href="/bookappointment" style={{textDecoration:'none'}} className="btn1">
-                      Book a Slot/Explore Our Features
+                      Book a Slot
+                    </a>
+                  </section>
+                  
+                  <section>
+                    <h5 className="sub-title">
+                      Hi Landowners! 
+                    </h5>
+                    <p>
+                    At Promote, register your LED screen and start earning 
+                    with our expert promotional services. From social media 
+                    campaigns to display ads, we help your brand shine online. 
+                    Discover the difference with Promote!
+                    </p>
+                    {/* <br></br> */}
+                    <a href="/registerscreen" style={{textDecoration:'none'}} className="btn1">
+                      Register Your Screen
                     </a>
                   </section>
                 </td>
@@ -235,7 +255,7 @@ const Homepage = () => {
         </div>
 
         {/*CONTAINER*/}
-        <div className="container">
+        <div className="homepagecontainer">
           <table>
             <tbody>
               <tr>
@@ -483,8 +503,6 @@ const Homepage = () => {
         <a href="#" id="scroll-up">
           <i className="fa fa-angle-up" />
         </a>
-        {/*JAVASCRIPT*/}
-        <div className="credits">W3SCHOOLS, UNSPLASH, STACKOVERFLOW</div>
       </>
     </div>
   );

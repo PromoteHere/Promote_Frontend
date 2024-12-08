@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import './LoginForm.css';
 import { ADDRESS_REGEX, EMAIL_REGEX, PASSWORD_REGEX, PHONENUMBER_REGEX, USERNAME_REGEX, VALIDATION_MESSAGE } from '@/Services/Regex';
 import ModalComponent from '@/Components/shared/ModalComponent/ModalComponent';
+import { useNavigate } from "react-router-dom";
 
 const SignInSignUpForm = () => {
+  const navigate = useNavigate();
   const [isSignUp, setIsSignUp] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -110,6 +112,7 @@ const SignInSignUpForm = () => {
       
       if(response.ok){
         responseData = await response.json();
+        navigate("/home");
       }
       else {
         const errorMessage = await response.text();

@@ -2,7 +2,7 @@ export const USERNAME_REGEX: RegExp = /^[a-zA-Z0-9_]+$/;
 
 export const EMAIL_REGEX: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export const PHONENUMBER_REGEX: RegExp = /^\d{10}$/;
+export const PHONENUMBER_REGEX: RegExp = /^\d{9}$/;
 
 export const ADDRESS_REGEX: RegExp = /^[a-zA-Z0-9\s,.'-]*$/;
 
