@@ -13,8 +13,8 @@ export default function Home() {
       <Router>
         <main>
           <Routes>
-            <Route path="/" element={<LoginForm />} />
-            <Route path="/home" element={<HomePage />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/" element={<HomePage />} />
           </Routes>
         </main>
       </Router>
